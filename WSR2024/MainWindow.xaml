@@ -1,0 +1,27 @@
+﻿<Window x:Class="WSR2024.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WSR2024"
+        mc:Ignorable="d"
+        Title="WSR2024" Height="450" Width="800" MinHeight="450" MinWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="BackBtn" Content="Назад" HorizontalAlignment="Left" Click="BackBtn_Click"/>
+
+        <Label x:Name="TitleLb" Width="Auto" HorizontalAlignment="Right"/>
+
+        <Button x:Name="ExitBTn" Content="Выход" HorizontalAlignment="Right" Grid.Column="1" Click="ExitBTn_Click"/>
+
+        <Frame Grid.Row="1" Grid.ColumnSpan="2" x:Name="MainFrame" NavigationUIVisibility="Hidden" Navigated="MainFrame_Navigated" Source="/Pages/Auth.xaml"/>
+    </Grid>
+</Window>
