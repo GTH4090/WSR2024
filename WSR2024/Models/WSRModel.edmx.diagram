@@ -14,6 +14,10 @@
         <AssociationConnector Association="WSR2024Model.FK_PatientEvents_EventType" ManuallyRouted="false" />
         <AssociationConnector Association="WSR2024Model.FK_PatientEvents_Patient" ManuallyRouted="false" />
         <AssociationConnector Association="WSR2024Model.FK_PatientHistory_Patient" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="WSR2024Model.Conditions" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WSR2024Model.Hospitalization" Width="1.5" PointX="6" PointY="3.875" />
+        <AssociationConnector Association="WSR2024Model.FK_Hospitalization_Conditions" />
+        <AssociationConnector Association="WSR2024Model.FK_Hospitalization_Patient" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

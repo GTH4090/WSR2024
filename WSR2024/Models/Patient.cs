@@ -19,6 +19,7 @@ namespace WSR2024.Models
         {
             this.PatientEvents = new HashSet<PatientEvents>();
             this.PatientHistory = new HashSet<PatientHistory>();
+            this.Hospitalization = new HashSet<Hospitalization>();
         }
     
         public int Id { get; set; }
@@ -46,5 +47,7 @@ namespace WSR2024.Models
         public virtual ICollection<PatientEvents> PatientEvents { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PatientHistory> PatientHistory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Hospitalization> Hospitalization { get; set; }
     }
 }

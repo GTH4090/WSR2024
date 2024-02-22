@@ -12,6 +12,8 @@
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button x:Name="RegBtn" Content="Регистрация" Click="RegBtn_Click"/>
             <Button x:Name="ScanBtn" Content="Сканировать QR" Click="ScanBtn_Click"/>
+            <Button x:Name="HospBtn" Content="Госпитализация" Click="HospBtn_Click"/>
+            
         </StackPanel>
     </Grid>
 </Page>

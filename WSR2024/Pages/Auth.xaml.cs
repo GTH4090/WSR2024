@@ -64,5 +64,10 @@ namespace WSR2024.Pages
                 Error(ex.Message);
             }
         }
+
+        private void HospBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new HospitalizationPage());
+        }
     }
 }

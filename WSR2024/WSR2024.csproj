@@ -77,11 +77,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\Helper.cs" />
+    <Compile Include="Classes\Patient.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\Auth.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\HospitalizationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -91,10 +96,16 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Conditions.cs">
+      <DependentUpon>WSRModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Doctor.cs">
       <DependentUpon>WSRModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EventType.cs">
+      <DependentUpon>WSRModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Hospitalization.cs">
       <DependentUpon>WSRModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Patient.cs">
@@ -124,6 +135,9 @@
     <Compile Include="Pages\Auth.xaml.cs">
       <DependentUpon>Auth.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\HospitalizationPage.xaml.cs">
+      <DependentUpon>HospitalizationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
@@ -152,8 +166,10 @@
       <DependentUpon>WSRModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\WSR2024.Models.Conditions.datasource" />
     <None Include="Properties\DataSources\WSR2024.Models.Doctor.datasource" />
     <None Include="Properties\DataSources\WSR2024.Models.EventType.datasource" />
+    <None Include="Properties\DataSources\WSR2024.Models.Hospitalization.datasource" />
     <None Include="Properties\DataSources\WSR2024.Models.Patient.datasource" />
     <None Include="Properties\DataSources\WSR2024.Models.PatientEvents.datasource" />
     <None Include="Properties\DataSources\WSR2024.Models.PatientHistory.datasource" />
