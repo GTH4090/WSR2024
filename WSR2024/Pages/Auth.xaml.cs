@@ -69,5 +69,15 @@ namespace WSR2024.Pages
         {
             NavigationService.Navigate(new HospitalizationPage());
         }
+
+        private void LoginBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if(Db.Doctor.FirstOrDefault(el => el.Name == DoctorTbx.Text) != null)
+            {
+                var item = Db.Doctor.FirstOrDefault(el => el.Name == DoctorTbx.Text);
+                Logined = item;
+                NavigationService.Navigate(new SchedulePage());
+            }
+        }
     }
 }

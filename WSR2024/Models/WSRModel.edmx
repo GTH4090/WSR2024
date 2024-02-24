@@ -88,6 +88,14 @@
           <Property Name="PatientId" Type="int" Nullable="false" />
           <Property Name="Diagnosis" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DoctorId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Hospitalization_Conditions">
           <End Role="Conditions" Type="Self.Conditions" Multiplicity="1" />
           <End Role="Hospitalization" Type="Self.Hospitalization" Multiplicity="*" />
@@ -160,6 +168,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Schedule_Doctor">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="1" />
+          <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="DoctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище WSR2024ModelContainer">
           <EntitySet Name="Conditions" EntityType="Self.Conditions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
@@ -168,6 +188,7 @@
           <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientEvents" EntityType="Self.PatientEvents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientHistory" EntityType="Self.PatientHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Hospitalization_Conditions" Association="Self.FK_Hospitalization_Conditions">
             <End Role="Conditions" EntitySet="Conditions" />
             <End Role="Hospitalization" EntitySet="Hospitalization" />
@@ -192,6 +213,10 @@
             <End Role="Patient" EntitySet="Patient" />
             <End Role="PatientHistory" EntitySet="PatientHistory" />
           </AssociationSet>
+          <AssociationSet Name="FK_Schedule_Doctor" Association="Self.FK_Schedule_Doctor">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -204,6 +229,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PatientEvents" Relationship="Self.FK_PatientEvents_Doctor" FromRole="Doctor" ToRole="PatientEvents" />
+          <NavigationProperty Name="Schedule" Relationship="WSR2024Model.FK_Schedule_Doctor" FromRole="Doctor" ToRole="Schedule" />
         </EntityType>
         <EntityType Name="EventType">
           <Key>
@@ -346,6 +372,11 @@
             <End Role="Patient" EntitySet="Patient" />
             <End Role="Hospitalization" EntitySet="Hospitalization" />
           </AssociationSet>
+          <EntitySet Name="Schedule" EntityType="WSR2024Model.Schedule" />
+          <AssociationSet Name="FK_Schedule_Doctor" Association="WSR2024Model.FK_Schedule_Doctor">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="Schedule" EntitySet="Schedule" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Conditions">
           <Key>
@@ -394,6 +425,27 @@
             </Principal>
             <Dependent Role="Hospitalization">
               <PropertyRef Name="PationtId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DoctorId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Doctor" Relationship="WSR2024Model.FK_Schedule_Doctor" FromRole="Schedule" ToRole="Doctor" />
+        </EntityType>
+        <Association Name="FK_Schedule_Doctor">
+          <End Type="WSR2024Model.Doctor" Role="Doctor" Multiplicity="1" />
+          <End Type="WSR2024Model.Schedule" Role="Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Schedule">
+              <PropertyRef Name="DoctorId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -489,6 +541,15 @@
                 <ScalarProperty Name="Data" ColumnName="Data" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="PationtId" ColumnName="PationtId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schedule">
+            <EntityTypeMapping TypeName="WSR2024Model.Schedule">
+              <MappingFragment StoreEntitySet="Schedule">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

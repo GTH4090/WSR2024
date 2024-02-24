@@ -13,7 +13,10 @@
             <Button x:Name="RegBtn" Content="Регистрация" Click="RegBtn_Click"/>
             <Button x:Name="ScanBtn" Content="Сканировать QR" Click="ScanBtn_Click"/>
             <Button x:Name="HospBtn" Content="Госпитализация" Click="HospBtn_Click"/>
-            
+            <GroupBox Header="Доктор">
+                <TextBox x:Name="DoctorTbx"/>
+            </GroupBox>
+            <Button x:Name="LoginBtn" Content="Авторизоваться" Click="LoginBtn_Click"/>
         </StackPanel>
     </Grid>
 </Page>

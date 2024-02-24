@@ -18,6 +18,8 @@
         <EntityTypeShape EntityType="WSR2024Model.Hospitalization" Width="1.5" PointX="6" PointY="3.875" />
         <AssociationConnector Association="WSR2024Model.FK_Hospitalization_Conditions" />
         <AssociationConnector Association="WSR2024Model.FK_Hospitalization_Patient" />
+        <EntityTypeShape EntityType="WSR2024Model.Schedule" Width="1.5" PointX="3" PointY="10" />
+        <AssociationConnector Association="WSR2024Model.FK_Schedule_Doctor" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -32,5 +32,6 @@ namespace WSR2024.Models
         public virtual DbSet<PatientHistory> PatientHistory { get; set; }
         public virtual DbSet<Conditions> Conditions { get; set; }
         public virtual DbSet<Hospitalization> Hospitalization { get; set; }
+        public virtual DbSet<Schedule> Schedule { get; set; }
     }
 }
