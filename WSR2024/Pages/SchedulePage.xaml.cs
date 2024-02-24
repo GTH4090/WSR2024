@@ -95,7 +95,7 @@ namespace WSR2024.Pages
                     }
                     if (ViewCbx.SelectedIndex == 1)
                     {
-                        for (int i = 0; i < (end - start).TotalDays + 7; i += 7)
+                        for (int i = 0; i < (end - start).TotalDays + 6; i += 7)
                         {
                             var date = start.AddDays(i);
                             var dateend = date.AddDays(7);
