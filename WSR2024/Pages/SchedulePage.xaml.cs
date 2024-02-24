@@ -95,39 +95,35 @@ namespace WSR2024.Pages
                     }
                     if (ViewCbx.SelectedIndex == 1)
                     {
-                        for (int i = 0; i < (end - start).TotalDays + 6; i += 7)
+                        for (int i = 0; i < (end - start).TotalDays + 7; i += 7)
                         {
                             var date = start.AddDays(i);
-                            ScheduleGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(100) });
+                            var dateend = date.AddDays(7);
+                            ScheduleGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(150) });
                             Label label = new Label();
                             label.Width = double.NaN;
-                            label.Content = date.ToString("d");
-                            Grid.SetColumn(label, i);
+                            label.Content = date.ToString("d") + "-" + dateend.ToString("d");
+                            Grid.SetColumn(label, i / 7);
                             Grid.SetRow(label, 0);
 
                             ScheduleGrid.Children.Add(label);
-
-                        }
-                        foreach (var it in schedule)
-                        {
-                            Label label1 = new Label();
+                            TextBox label1 = new TextBox();
+                            label1.IsReadOnly = true;
                             label1.Width = double.NaN;
-                            label1.Content = it.Name;
-
-                            if (it.TypeId == 0)
-                            {
-                                label1.Background = Brushes.LightGreen;
-
-                            }
-                            if (it.TypeId == 1)
-                            {
-                                label1.Background = Brushes.LightBlue;
-
-                            }
-                            Grid.SetColumn(label1, (int)(end.Date.Date - it.Date.Date).TotalDays);
+                            label1.Height = double.NaN;
+                            Grid.SetColumn(label1, i / 7);
                             Grid.SetRow(label1, 1);
+
+                            foreach (var it in schedule.Where(el => el.Date.Date >= date.Date && el.Date.Date <= dateend.Date))
+                            {
+                                
+                                label1.Text += it.Name + "\n";
+
+                            }
                             ScheduleGrid.Children.Add(label1);
+
                         }
+
                     }
                     
 
